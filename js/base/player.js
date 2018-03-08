@@ -7,8 +7,8 @@ class Player extends Entity {
 
     checkCollision(enemy){
         let collision,
-        horizontalCollision = (player.x + this.hitbox.sizeX) > enemy.x && player.x < (enemy.x + enemy.hitbox.sizeX),
-        verticalCollision = (player.y + this.hitbox.sizeY) > enemy.y && player.y < (enemy.y + enemy.hitbox.sizeY);
+        horizontalCollision = (this.x + this.hitbox.sizeX) > enemy.x && this.x < (enemy.x + enemy.hitbox.sizeX),
+        verticalCollision = (this.y + this.hitbox.sizeY) > enemy.y && this.y < (enemy.y + enemy.hitbox.sizeY);
         
         collision = (horizontalCollision && verticalCollision) ? true : false;
         return collision;
@@ -42,16 +42,16 @@ class Player extends Entity {
     checkBoundaries(axis){
         switch(axis){
             case 'x':
-                if (this[axis] < 5)
-                    this[axis] = 5;
-                else if (this[axis] > 405)
-                    this[axis] = 405;
+                if (this[axis] < limits.left)
+                    this[axis] = limits.left;
+                else if (this[axis] > limits.right)
+                    this[axis] = limits.right;
                 break;
             case 'y':
-                if (this[axis] < -45)
-                    this[axis] = -45;
-                else if(this[axis] > 380)
-                    this[axis] = 380;
+                if (this[axis] < limits.top)
+                    this[axis] = limits.top;
+                else if(this[axis] > limits.bottom)
+                    this[axis] = limits.bottom;
                 break;
         }
     }
