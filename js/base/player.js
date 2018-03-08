@@ -1,10 +1,12 @@
 class Player extends Entity {
     
+    // Constructor for the player
     constructor(hitbox) {
         super('images/char-boy.png', {x: 205, y: 380}, hitbox);
         this.addEventListener();
     }
 
+    // Check the collision of the player with an enemy
     checkCollision(enemy){
         let collision,
         horizontalCollision = (this.x + this.hitbox.sizeX) > enemy.x && this.x < (enemy.x + enemy.hitbox.sizeX),
@@ -14,6 +16,7 @@ class Player extends Entity {
         return collision;
     }
 
+    // Move the player in screen
     handleInput(keyCode){
         let axis,
             xIncrement = 100,
@@ -39,6 +42,7 @@ class Player extends Entity {
         this.checkBoundaries(axis);
     }
 
+    // Limit the player inside the game screen
     checkBoundaries(axis){
         switch(axis){
             case 'x':
@@ -56,6 +60,7 @@ class Player extends Entity {
         }
     }
 
+    // Adds a event listener to listen to keyboard input and move the player
     addEventListener(){
         // This listens for key presses and sends the keys to your
         // Player.handleInput() method. You don't need to modify this.
